@@ -1,0 +1,80 @@
+{
+    "Plant" : {
+        "lifeExpectancy" : 3,
+        "Edad" : 0, 
+        "LifePoints" : 10,      
+        "MaxLifePoints" : 100,   
+        "Stage" : 0, 
+        "WaterPoints": 0,
+        "WaterReqMin" : 5,
+        "WaterReqMax" : 80,
+        "SunPoints" : 0,
+        "SunReqMin" : 20,
+        "SunReqMax" : 50,  
+        "FertlilizerPoints" : 0,
+        "FertilizerReqMin" : 5,
+        "FertilizerReqMax" : 80,
+        "Type" : "Tomate",
+        "abletocreateanother" : false,
+        
+        "urlGood1" : "https://img.freepik.com/premium-photo/small-tomato-plant_87414-1692.jpg?w=2000",
+        "urlBad1" : "https://thumbs.dreamstime.com/b/dying-tomato-plants-end-summer-garden-dying-tomato-plants-end-growing-season-184514014.jpg",
+        "urlMed1" : "https://oldworldgardenfarms.com/wp-content/uploads/2022/03/tomato-plant-dying.jpg",
+        
+        "urlGood2" : "https://gardenerspath.com/wp-content/uploads/2020/05/Green-Tomatoes-Ripening-on-the-Vine.jpg",
+        "urlBad2" : "https://haenselblatt.com/img/edible-gardens/ERR/are-blight-infected-tomatoes-edible.jpg",
+        "urlMed2" : "https://www.consejosparamihuerto.com/wp-content/uploads/2020/01/son-comestibles-los-tomates-infectados-por-el-tizon.jpg",
+        
+        "urlGood3" : "https://contentgrid.homedepot-static.com/hdus/en_US/DTCCOMNEW/Articles/how-to-grow-tomatoes-hero.jpg",
+        "urlBad3" : "https://agriculturers.com/wp-content/uploads/2016/07/tomate-podrido.jpg", 
+        "urlMed3" : "https://previews.123rf.com/images/tmsara/tmsara1808/tmsara180800226/107595160-tomatoes-on-plant-with-disease-rotten-tomatoes-in-the-vegetable-garden.jpg" 
+        
+    }, "Season": {
+    
+        "Spring" : {
+            "Name" : "Spring",
+            "startMonth": 3,
+            "endMonth": 5,
+            "isActive" : false,
+            "solMin" : 15,
+            "solMax" : 30,
+            "precipitacionMin" : 0,
+            "precipitacionMax" : 20
+            },
+ 
+        "Summer" : {
+            "Name" : "Summer",
+            "startMonth": 6,
+            "endMonth": 8,
+            "isActive" : false,
+            "solMin" : 20,
+            "solMax" : 40,
+            "precipitacionMin" : 0,
+            "precipitacionMax" : 10
+            },
+ 
+ 
+        "Fall" : {
+            "Name" : "Fall",
+            "startMonth": 9,
+            "endMonth": 11,
+            "isActive" : false,
+            "solMin" : 10,
+            "solMax" : 25,
+            "precipitacionMin" : 0,
+            "precipitacionMax" : 50
+            },
+        
+ 
+        "Winter" : {
+            "Name" : "Winter",
+            "startMonth": 12,
+            "endMonth": 2,
+            "isActive" : false,
+            "solMin" : 5,
+            "solMax" : 15,
+            "precipitacionMin" : 1,
+            "precipitacionMax" : 60
+        }
+     }
+}

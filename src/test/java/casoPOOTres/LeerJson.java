@@ -7,20 +7,23 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.util.Iterator;
+import java.util.Map;
+  
+import org.json.simple.JSONArray;
+import org.json.simple.parser.*;
+
+
 
 public class LeerJson {
 
 	public JSONObject read(String leyendo) throws IOException, ParseException {
-		JSONParser jsonparser = new JSONParser();
 		
-		FileReader reader = new FileReader(".\\filejson\\jardin.json");
+		Object obj = new JSONParser().parse(new FileReader(".\\src/test/java\\casoPOOTres\\jardin.json"));
 		
-		Object obj = jsonparser.parse(reader);
+		JSONObject jo = (JSONObject) obj;
 		
-		JSONObject vacjson = (JSONObject)obj;
-		
-		
-		JSONObject toreturn = (JSONObject) vacjson.get(leyendo);
+		JSONObject toreturn = (JSONObject) jo.get(leyendo);
 		
 		return toreturn;
 		
