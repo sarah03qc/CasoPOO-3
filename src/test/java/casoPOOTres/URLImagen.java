@@ -5,16 +5,15 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.JFrame;
  
-//pone una imagen en el canvas a traves de un link
+//despliega una imagen a traves de un link
 
 
 public class URLImagen {
 	
 	public String direcc;
 
-    public URLImagen(final String link) {
+    public URLImagen(final String link, final JFrame frame, final JLabel label, Planta plant) {
     	//el constructor toma la url como parametro
     	EventQueue.invokeLater(new Runnable() {
             @Override
@@ -30,19 +29,18 @@ public class URLImagen {
                     BufferedImage imagen = ImageIO.read(url);
                     Image image = imagen.getScaledInstance(500, 600, Image.SCALE_DEFAULT);  //para darle un tamano predeterminado
                     ImageIcon icon = new ImageIcon(image);
-                    JFrame frame = new JFrame();
-                    frame.setLayout(new FlowLayout());
-                    frame.setSize(1200, 800);
-                    JLabel label = new JLabel();
+                    
+                    frame.setSize(new Dimension(950, 800));
+                  
                     label.setIcon(icon);
                     
-                    JFrame f = new JFrame();
-                    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    f.getContentPane().add(label);
-                  
-                    f.pack();
-                    f.setLocation(250, 50); 
-                    f.setVisible(true);
+                   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                   
+                    frame.getContentPane().add(label);
+    
+                    frame.setLocation(250, 50); 
+                    frame.setVisible(true);
+                    
                 } catch (Exception exp) {
                     exp.printStackTrace();
                 }

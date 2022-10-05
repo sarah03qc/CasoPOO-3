@@ -1,6 +1,10 @@
 package casoPOOTres;
 
+import java.awt.Label;
 import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -9,6 +13,7 @@ public class Planta {
 	
 	public String type;
 	
+	//los urls serian los siguientes, los numeros significan la etapa de vida
 	public String urlbad1;
 	public String urlgood1;
 	public String urlmed1;
@@ -21,16 +26,15 @@ public class Planta {
 	public String urlgood3;
 	public String urlmed3;
 	
-	public int edad = 0;
 	public int lifepoints = 100;
 	public int stage = 1;
-	public int waterpoints;
+	public int waterpoints = 10;
 	public int waterminreq;
 	public int watermaxreq;
 	public int sunpoints;
 	public int sunminreq;
 	public int sunmaxreq;
-	public int fertilizerpoints = 0;
+	public int fertilizerpoints = 10;
 	public int fertilminreq;
 	public int fertilmaxreq;
 	public int lifeexpectancy;
@@ -52,8 +56,6 @@ public class Planta {
 		lifeexpectancy = ((Long) planta.get("lifeExpectancy")).intValue();  //se mide en meses, al igual que la edad
 		
 		type = (String) planta.get("Type");
-		
-		createAnother = (Boolean) planta.get("abletocreateanother");
 		
 		//tomar las urls del json, dependen del estado y etapa de la planta
 		urlbad1 = (String) planta.get("urlBad1");
@@ -93,7 +95,7 @@ public class Planta {
 		if(waterpoints <= watermaxreq && waterpoints >= waterminreq) {
 			//revisar que este en el rango adecuado
 			System.out.println("Planta regada, ahora en: " + waterpoints);
-			if(lifepoints <= 95) {
+			if(lifepoints <= 92) {
 				lifepoints = lifepoints + 8;  //agregamos vida
 			}
 			
@@ -106,17 +108,20 @@ public class Planta {
 	}
 	
 	@SuppressWarnings("unused")
-	public void crecer() {
+	public void crecer(JFrame frame, JLabel label) {
 		//metodo para crecer una etapa
 		if(stage < 3) {
 			//significa que aun no esta en la etapa final de su vida, y puede crecer mas sin morir
 			stage++;
 			System.out.println("Planta ha crecido, ahora en stage: " + stage);
-			DisplayCondition mostrar = new DisplayCondition(this);
+			DisplayCondition mostrar = new DisplayCondition(this, frame, label);
 		} else {
 			//si ya es igual a 3, o sea su etapa final
 			System.out.println("Planta ha completado su ciclo de vida");
-			DisplayCondition mostrar = new DisplayCondition(this);
+			DisplayCondition mostrar = new DisplayCondition(this, frame, label);
+			Label gamewon = new Label("GAME WON: ha finalizado el ciclo de vida");  //si se completa el ciclo de vida de la planta 
+			//                                                                        con exito, es como ganar el juego
+	        frame.add(gamewon);
 			this.morir();
 		}
 	}
@@ -124,6 +129,7 @@ public class Planta {
 	public void morir() {
 		//metodo para que una planta muera
 		lifepoints = 0;	
+		
 	}
 	
 	public void fotosintesis(int sunLevel) {
@@ -135,7 +141,9 @@ public class Planta {
 			this.sunpoints++;
 			this.lifepoints = this.lifepoints - 3;
 		} else if(sunLevel < this.sunminreq) {
-			this.sunpoints--;
+			if(this.sunpoints >= 1) {
+				this.sunpoints--;
+			}
 			this.lifepoints = this.lifepoints - 3;
 		} else {
 			//no se sale del min y el max que requiere la planta, entonces
@@ -145,7 +153,7 @@ public class Planta {
 		}
 	}
 	
-	public void absorverRain(int rainLevel) {
+	public void absorberRain(int rainLevel) {
 		//metodo en el que una planta absorve la lluvia y se alimenta de ella, pero debe ser en cantidades necesarias
 		//no mas ni menos
 		//este metodo recibe el nivel de lluvia actual, segun la epoca y reacciona acorde a este  (nivel de lluvia actual, randomizer de rango)
@@ -154,7 +162,10 @@ public class Planta {
 			this.waterpoints++;
 			this.lifepoints = this.lifepoints - 3;
 		} else if(rainLevel < this.waterminreq) {
-			this.waterpoints--;
+			if(this.waterpoints >= 1 ) {
+				//para que no de negativo
+				this.waterpoints--;
+			}
 			this.lifepoints = this.lifepoints - 3;
 		} else {
 			//no se sale del min y el max que requiere la planta, entonces
